@@ -1,0 +1,175 @@
+VPC:
+ip 192.168.0.2/0
+
+show ip
+
+ping 192.168.0.2
+
+---------------------------------------
+
+Router:
+
+configure terminal
+
+Switch:
+
+configure terminal
+
+---------------------------------------
+
+Router:
+
+hostname R1
+
+Switch:
+
+hostname S1
+
+---------------------------------------
+
+Router:
+
+no ip domain-lookup
+
+Switch:
+
+no ip domain-lookup
+
+---------------------------------------
+
+Router:
+
+line console 0
+
+password gsn3
+
+login
+
+end
+
+exit
+
+Switch:
+
+line console 0
+
+password gsn3
+
+login
+
+end
+
+exit
+
+----------------------------------------
+
+Router:
+
+configure terminal
+
+enable password class
+
+end
+
+diseable
+
+enable
+
+Switch:
+
+configure terminal
+
+enable password class
+
+end
+
+diseable
+
+enable
+
+----------------------------------------
+
+VLANs
+
+Switch:
+conf t
+int vlan 1
+ip address 192.168.0.10 255.255.255.0
+no shut
+end
+
+Router:
+conf t
+int vlan 1
+ip address 192.168.0.1 255.255.255.0
+no shut
+end
+
+S1 a C2:
+conf t
+int f1/0
+switchport mode access
+switchport access vlan 1
+end
+
+S1 a R1
+conf t
+int f1/10
+switchport mode access
+switchport access vlan 1
+end
+
+R1 a S1
+conf t
+int f1/15
+switchport mode access
+switchport access vlan 1
+end
+
+----------------------------------------
+
+Switch:
+conf t
+banner motd #El acceso a esta terminal esta restringido a personal autorizado.#
+end
+exit
+
+Router:
+conf t
+banner motd #El acceso a esta terminal esta restringido a personal autorizado.#
+end
+exit
+
+----------------------------------------
+
+Switch:
+copy running-config startup-config
+
+Router:
+copy running-config startup-config
+
+----------------------------------------
+
+Switch:
+show running-config
+
+Router:
+show running-config
+
+----------------------------------------
+
+Switch:
+end
+
+Router:
+end
+
+----------------------------------------
+
+show ip interface brief
+
+sh ip int br
+
+----------------------------------------
+
+ping 192.168.0.1
